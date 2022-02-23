@@ -4,7 +4,6 @@ on:
 jobs:
   publish-to-dockerhub:
     runs-on: ubuntu-18.04
-    if: github.repository_owner == 'Apicurio'
     steps:
       - name: Set up JDK 1.8
         uses: AdoptOpenJDK/install-jdk@v1
@@ -16,9 +15,7 @@ jobs:
           mkdir apicurito
           cd apicurito
           git init
-          git config --global user.name "apicurio-ci"
-          git config --global user.email "apicurio.ci@gmail.com"
-          git remote add origin "https://apicurio-ci:${{ secrets.ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git remote add origin "https://github.com/$GITHUB_REPOSITORY.git"
           git fetch
           git checkout master
           git branch --set-upstream-to=origin/master
@@ -27,8 +24,3 @@ jobs:
         run: |
           cd apicurito
           mvn clean install -D::image
-      - name: Login to DockerHub Registry
-        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-      - name: Push to Docker Hub
-        run: |
-          docker push apicurio/apicurito-ui:latest
