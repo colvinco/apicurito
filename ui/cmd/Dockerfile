@@ -7,7 +7,7 @@ COPY go.mod /src/go.mod
 COPY go.sum /src/go.sum
 COPY apicurito.go /src/apicurito.go
 RUN go mod vendor
-RUN go get github.com/go-bindata/go-bindata/go-bindata@v1.0.1
+RUN go get github.com/go-bindata/go-bindata/go-bindata@v1.0.0
 
 COPY . /src
 RUN go-bindata -o bindata_assetfs.go -prefix dist dist/...
