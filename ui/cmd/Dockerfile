@@ -1,4 +1,4 @@
-FROM golang:1.11.0
+FROM golang:latest
 WORKDIR /src
 
 # Let vendor in our dependencies.. copy over the minimum number of files needed to
@@ -7,7 +7,7 @@ COPY go.mod /src/go.mod
 COPY go.sum /src/go.sum
 COPY apicurito.go /src/apicurito.go
 RUN go mod vendor
-RUN go get github.com/go-bindata/go-bindata/go-bindata@v1.0.0
+RUN go get github.com/go-bindata/go-bindata/go-bindata@v1.0.1
 
 COPY . /src
 RUN go-bindata -o bindata_assetfs.go -prefix dist dist/...
