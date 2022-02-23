@@ -23,6 +23,6 @@ jobs:
       - name: Build Apicurito
         run: |
           sudo apt-get update
-          sudo apt-get install –-reinstall ca-certificates
+          sudo apt-get install --reinstall ca-certificates
           cd apicurito
           mvn clean install -D::image
