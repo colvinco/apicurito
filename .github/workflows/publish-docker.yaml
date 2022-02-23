@@ -15,7 +15,7 @@ jobs:
           mkdir apicurito
           cd apicurito
           git init
-          git remote add origin "https://github.com/$GITHUB_REPOSITORY.git"
+          git remote add origin "https://github.com/colvinco/apicurito.git"
           git fetch
           git checkout master
           git branch --set-upstream-to=origin/master
